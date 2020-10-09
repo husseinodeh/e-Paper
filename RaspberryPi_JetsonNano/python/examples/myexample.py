@@ -20,6 +20,7 @@ epd.init(epd.lut_full_update)
 epd.Clear(0xFF)
 
 # Drawing on the image
+fonts = os.path.join(picdir, 'Font.ttc')
 font15 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 15)
 font24 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
 
@@ -28,7 +29,7 @@ time_image = Image.new('1', (epd.height, epd.width), 255)
 time_draw = ImageDraw.Draw(time_image)
 time_draw.rectangle((120, 80, 220, 105), fill = 255)
 import socker
-time_draw.text((5, 20), "local IP: "+([l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0]), font = font15, fill = 0)
+time_draw.text((5, 20), "local IP: "+([l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0]), font = ImageFont.truetype(fonts,20), fill = 0)
 
 import urllib.request
 
