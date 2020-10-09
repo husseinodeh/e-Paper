@@ -7,13 +7,10 @@ libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__)
 if os.path.exists(libdir):
     sys.path.append(libdir)
 
-import logging
 from waveshare_epd import epd2in13
 import time
 from PIL import Image,ImageDraw,ImageFont
 import traceback
-
-logging.basicConfig(level=logging.DEBUG)
 
 epd = epd2in13.EPD()
 epd.init(epd.lut_full_update)
@@ -33,7 +30,7 @@ time_draw.text((5, 20), "local IP: "+([l for l in ([ip for ip in socket.gethostb
 
 import urllib.request
 
-time_draw.text((5, 70),"public IP: "+urllib.request.urlopen('https://ident.me').read().decode('utf8'), font = font15, fill = 0)
+time_draw.text((5, 70),"public IP: "+urllib.request.urlopen('https://ident.me').read().decode('utf8'), font = font15, fill = 255)
 
 #    time_draw.text((120, 80), time.strftime('%H:%M:%S'), font = font24, fill = 0)
 epd.display(epd.getbuffer(time_image))
