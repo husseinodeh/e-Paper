@@ -12,6 +12,7 @@ import time
 from PIL import Image,ImageDraw,ImageFont
 import traceback
 
+
 epd = epd2in13.EPD()
 epd.init(epd.lut_full_update)
 #epd.Clear(0xFF)
